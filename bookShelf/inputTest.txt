@@ -1,0 +1,16 @@
+5 Menara
+A Fuadi
+2010
+
+let titl = "5 Menara";
+let athr = "A Fuadi";
+let years = 2010
+let dmy = ""
+
+checkFormInput(titl,athr,years)
+
+document.getElementById("title").value = "Eden";
+    document.getElementById("author").value = "";
+    document.getElementById("years").value = "";
+
+    const myArr = ["aku","dia","kamu"]

@@ -1,0 +1,98 @@
+@import "/palette.scss";
+
+body {
+  background-image: url("/asset/v640-peipei-09-modernbg.jpg");
+  background-size: cover;
+  width: 80%;
+  margin: 0 auto;
+  padding: 2rem;
+  height: 100%;
+  padding-top: 0;
+  max-width: 800px;
+  color: #1d5372;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding: 0.5rem 0;
+  border: 2px solid #1d5372;
+  border-radius: 1.5rem;
+}
+
+#dataBuku input,
+select {
+  display: block;
+  margin-bottom: 0.7rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  border-radius: 5px;
+  border: 2px solid #1d5372;
+  padding: 0.3rem;
+  background-color: #4b9fd1ff;
+}
+select {
+  font-weight: bold;
+  color: #1d5372;
+}
+#dataBuku input[type="submit"] {
+  width: 20%;
+  /* margin-left: 0; */
+  margin-left: 2rem;
+  font-weight: bold;
+  color: #1d5372;
+}
+
+.container {
+  border: 2px solid #1d5372;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+label {
+  color: #1d5372;
+  font-weight: bold;
+}
+
+.search-book,
+#read-book,
+#unread-book {
+  border: 2px solid #1d5372;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-book h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.search-book form input {
+  /* margin-left: auto;
+  margin-right: auto; */
+  border: 2px solid #1d5372;
+  padding: 0.3rem;
+  background-color: #4b9fd1ff;
+  border-radius: 5px;
+}
+
+.search-book form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="search"] {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+#search-form input[type="submit"] {
+  width: 5rem;
+  font-weight: bold;
+  color: #1d5372;
+}
