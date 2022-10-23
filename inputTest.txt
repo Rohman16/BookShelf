@@ -1,0 +1,25 @@
+5 Menara
+A Fuadi
+2010
+
+let titl = "5 Menara";
+let athr = "A Fuadi";
+let years = 2010
+let dmy = ""
+
+checkFormInput(titl,athr,years)
+
+document.getElementById("title").value = "Eden";
+    document.getElementById("author").value = "";
+    document.getElementById("years").value = "";
+
+    const myArr = ["aku","dia","kamu"]
+
+    data-buku:"[{"id":1666385547600,"title":"5 Menara","author":"A Fuadi","year":"2009","isComplete":true},{"id":1666385645290,"title":"Maryamah Karpov","author":"Andrea Hirata","year":"2014","isComplete":false}]"
+
+dataBuku = {
+    id:null,
+    title:Muhammad Sang Inspirator Dunia,
+    author:Dr. 'Aidh Al-Qarni,
+    year:2022
+}
