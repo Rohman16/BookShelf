@@ -11,11 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+
   <body>
     <div id="test"></div>
     <h1>BookShelf App</h1>
     <div class="container">
-      <h2>Masukan Data Buku</h2>
+      <h2>Please Enter your Book</h2>
       <form id="dataBuku">
         <input
           type="text"
@@ -48,17 +49,17 @@
     </div>
     <div class="search-book">
       <h2>Display All Listed Books</h2>
-      <button onclick="displayBook()">Display</button>
+      <button onclick="displayBook()" id="search-button">Display All</button>
     </div>
     <div class="search-book">
-      <h2>Cari Buku</h2>
+      <h2>Find Your Book</h2>
       <form id="search-form">
-        <label for="cariBuku">Cari Buku</label>
+        <label for="cariBuku">Enter Keyword</label>
         <input type="search" id="cariBuku" />
-        <input type="submit" value="Cari" />
+        <input type="submit" value="Search" />
       </form>
     </div>
-
+    <p id="tezt"></p>
     <script src="project.js"></script>
   </body>
 </html>

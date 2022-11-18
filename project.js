@@ -13,8 +13,7 @@ let bookList = [];
 document.addEventListener("DOMContentLoaded", () => {
   const myStorage = localStorage.getItem("data-buku");
   if (myStorage !== null) {
-    const books = JSON.parse(myStorage);
-    loadBookList(books);
+    loadBookList();
   }
 });
 
@@ -135,13 +134,16 @@ function findMyBook(bookId) {
   return -1;
 }
 
-function loadBookList(data) {
+function loadBookList() {
+  const myStorage = localStorage.getItem("data-buku");
+  const data = JSON.parse(myStorage);
   for (const bk of data) {
     bookList.push(bk);
   }
   if (bookList.length > 0) {
     console.log(`Buku sudah diload`);
   }
+  return bookList;
 }
 
 function addSuccesfull(a, b) {
@@ -159,13 +161,6 @@ function addSuccesfull(a, b) {
 // }
 
 function createDisplay(myObj) {
-  deleteElement();
-  bookList = [];
-  if (isBookListExist) {
-    const myStorage = localStorage.getItem("data-buku");
-    data = JSON.parse(myStorage);
-  }
-  loadBookList(data);
   const { id, title, author, year, isComplete } = myObj;
   const bookDetail = document.createElement("div");
   bookDetail.setAttribute("id", "book-detail");
@@ -181,19 +176,21 @@ function createDisplay(myObj) {
   bookStatus.innerHTML = `Status Read : <b>${isComplete}</b>`;
   const buttonContainer = document.createElement("div");
   buttonContainer.setAttribute("id", "button-contnr");
-  const deleteButton = document.createElement("i");
-  deleteButton.classList.add("fa-solid");
-  deleteButton.classList.add("fa-trash");
-  deleteButton.classList.add("fa-xl");
-  deleteButton.addEventListener("click", deleteBook(id));
-  const readButton = document.createElement("i");
-  readButton.classList.add("fa-solid");
-  readButton.classList.add("fa-book-open");
-  readButton.classList.add("fa-xl");
-  const unreadButton = document.createElement("i");
-  unreadButton.classList.add("fa-solid");
-  unreadButton.classList.add("fa-book");
-  unreadButton.classList.add("fa-xl");
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("btn-delete");
+  deleteButton.addEventListener("click", () => {
+    deleteBook(id);
+  });
+  const readButton = document.createElement("button");
+  readButton.classList.add("btn-read");
+  readButton.addEventListener("click", () => {
+    moveTounRead(id);
+  });
+  const unreadButton = document.createElement("button");
+  unreadButton.classList.add("btn-unread");
+  unreadButton.addEventListener("click", () => {
+    moveToRead(id);
+  });
   if (isComplete) {
     buttonContainer.append(readButton, deleteButton);
   } else {
@@ -211,6 +208,7 @@ function createDisplay(myObj) {
 }
 
 function displayBook() {
+  deleteElement();
   const readBook = document.createElement("div");
   readBook.setAttribute("id", "read-book");
   const readBookHeader = document.createElement("h2");
@@ -235,11 +233,26 @@ function deleteBook(id) {
   const index = findMyBook(id);
   bookList.splice(index, 1);
   SaveMyBook(bookList);
+  displayBook();
+}
+
+function moveToRead(id) {
+  const index = findMyBook(id);
+  bookList[index].isComplete = true;
+  displayBook();
+  SaveMyBook(bookList);
+}
+
+function moveTounRead(id) {
+  const index = findMyBook(id);
+  bookList[index].isComplete = false;
+  displayBook();
+  SaveMyBook(bookList);
 }
 
 function deleteElement() {
   const elm = document.querySelectorAll(
-    "#notif-succes,#read-book,#unRead-book"
+    "#notif-succes,#read-book,#unRead-book,.search-resl"
   );
   for (const myElm of elm) {
     if (myElm !== null) {
@@ -248,9 +261,35 @@ function deleteElement() {
   }
 }
 
-function isBookListExist() {
-  const book = localStorage.getItem("data-buku");
-  if (book !== null) {
-    return true;
+const cari = document.querySelector("#search-form");
+cari.addEventListener("submit", (event) => {
+  deleteElement();
+  const word = document.getElementById("cariBuku").value;
+  const srch = word.toLowerCase();
+  const searchResult = document.createElement("div");
+  searchResult.classList.add("search-resl");
+  const searchHeader = document.createElement("h2");
+  searchHeader.innerHTML = "Search Result";
+  const searchItems = document.createElement("div");
+  for (const bk of bookList) {
+    const book = checkObjectBook(srch, bk);
+    if (book > 0) {
+      searchItems.append(createDisplay(bk));
+    }
   }
+  searchResult.append(searchHeader, searchItems);
+  document.body.append(searchResult);
+  event.preventDefault();
+});
+
+function checkObjectBook(str, obj) {
+  let count = 0;
+  for (const elm in obj) {
+    let words = String(obj[elm]);
+    const newElm = words.toLowerCase();
+    if (newElm.includes(str)) {
+      count++;
+    }
+  }
+  return count;
 }

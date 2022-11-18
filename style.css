@@ -1,5 +1,4 @@
 @import "/palette.scss";
-
 body {
   background-image: url("/asset/v640-peipei-09-modernbg.jpg");
   background-size: cover;
@@ -42,18 +41,29 @@ h1 {
   background-color: #4b9fd1ff;
   border: 2px solid #1d5372;
   border-radius: 5px;
-  /* position: relative; */
   padding: 0.2rem 0.3rem;
+}
+#search-button {
+  /* margin: 0.5rem auto; */
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  /* margin-right: auto; */
+  font-weight: bold;
+  color: #1d5372;
+  display: block;
+  font-size: larger;
 }
 #check-btn {
   margin-right: 0.3rem;
 }
+
 .container-btn {
   display: flex;
   align-items: center;
   margin: 0 auto;
   width: 80%;
 }
+
 .container {
   border: 2px solid #1d5372;
   padding: 1rem;
@@ -70,7 +80,8 @@ label {
 #read-book,
 #unRead-book,
 #notif-succes,
-#book-display {
+#book-display,
+.search-resl {
   border: 2px solid #1d5372;
   padding: 1rem;
   border-radius: 1rem;
@@ -87,23 +98,13 @@ label {
 #button-contnr {
   border: 2px solid #1d5372;
   border-radius: 0.5rem;
-  /* margin-bottom: 0.5rem; */
   width: 8rem;
   height: 2.25rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 1rem auto;
+  padding: 0 auto;
   margin-left: auto;
-}
-
-#button-contnr i {
-  transition: transform 0.5s;
-}
-
-#button-contnr i:hover {
-  transform: scale(1.5);
-  cursor: pointer;
 }
 
 .search-book h2 {
@@ -112,11 +113,12 @@ label {
   text-align: center;
 }
 
-.search-book form input {
+.search-book form input,
+.search-book button {
   /* margin-left: auto;
   margin-right: auto; */
   border: 2px solid #1d5372;
-  padding: 0.3rem;
+  padding: 0.3rem 1rem;
   background-color: #4b9fd1ff;
   border-radius: 5px;
 }
@@ -136,4 +138,35 @@ input[type="search"] {
   width: 5rem;
   font-weight: bold;
   color: #1d5372;
+}
+
+.btn-read {
+  background: url("./asset/book-open-solid.svg");
+}
+
+.btn-unread {
+  background: url("./asset/book-solid.svg");
+}
+
+.btn-delete {
+  background: url("./asset/trash-can-solid.svg");
+}
+
+.btn-delete,
+.btn-read,
+.btn-unread {
+  width: 25px;
+  height: 25px;
+  background-color: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  transition: transform 0.7s;
+  padding: 0;
+}
+
+.btn-delete:hover,
+.btn-read:hover,
+.btn-unread:hover {
+  transform: scale(1.5);
 }
